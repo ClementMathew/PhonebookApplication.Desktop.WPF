@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--Resources-->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml"/>
+        <ResourceDictionary Source="Sizes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--Primary TextBox-->
+    <Style TargetType="TextBox" x:Key="PrimaryTextBox">
+        <Setter Property="FontSize" Value="{StaticResource FontSmall}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SecondaryBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="3"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+</ResourceDictionary>

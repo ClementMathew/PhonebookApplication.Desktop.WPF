@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Templates/ButtonTemplate.xaml"/>
+        <ResourceDictionary Source="Colors.xaml"/>
+        <ResourceDictionary Source="Sizes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--Primary Button-->
+    <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ButtonBase}">
+        <Style.Setters>
+            <Setter Property="Background" Value="{StaticResource SecondaryBrush}"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="Margin" Value="0,20"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="{StaticResource FontNormal}"/>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>
