@@ -3,12 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Phonebook_Application.Models;
 
 namespace Phonebook_Application.Repositories
 {
     internal interface IRepository<T>
     {
-        void AddItem(string name,string phone,string email);
+        /// <summary>
+        /// AddItem Method
+        /// --------------
+        /// 1. Add single item to the repository.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
+        /// <param name="email"></param>
+        void AddItem(Person person);
+
+        /// <summary>
+        /// GetAll Method
+        /// -------------
+        /// 1. returns all items from repository as IEnumerable.
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<T> GetAll();
     }
 }

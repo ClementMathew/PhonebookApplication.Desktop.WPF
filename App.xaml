@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Phonebook_Application"
              StartupUri="MainWindow.xaml">
     
+    <!--Merged Resource Dictionary-->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

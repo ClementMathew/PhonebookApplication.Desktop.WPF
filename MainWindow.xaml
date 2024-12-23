@@ -20,7 +20,7 @@
         <ec:EmailConverter x:Key="EmailConverter"/>
     </Window.Resources>
 
-    <!--Outer Main Grid-->
+    <!--Outer Main Row Grid-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
@@ -29,11 +29,14 @@
         
         <!--Application Main Header-->
         <StackPanel Grid.Row="0">
-            <TextBlock Style="{StaticResource MainHeader}" Text="Phone Book Dashboard"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Assets/logo.png" Height="60" Margin="30,0,0,0"/>
+                <TextBlock Style="{StaticResource MainHeader}" Text="Phone Book Dashboard"></TextBlock>
+            </StackPanel>
             <Separator/>
         </StackPanel>
 
-        <!--Bottom Grid-->
+        <!--Bottom Column Grid-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -45,16 +48,24 @@
 
                 <!--Name Input-->
                 <Label Content="Name" Style="{StaticResource PrimaryLabel}"></Label>
-                <TextBox Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PrimaryTextBox}"></TextBox>
+                <TextBox Text="{Binding Name,
+                                        ValidatesOnDataErrors=True,
+                                        UpdateSourceTrigger=PropertyChanged}" 
+                         Style="{StaticResource PrimaryTextBox}"></TextBox>
 
                 <!--Email Input-->
                 <Label Content="Email" Style="{StaticResource PrimaryLabel}"></Label>
-                <TextBox Text="{Binding Email,Converter={StaticResource EmailConverter},UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Email,
+                                        ValidatesOnDataErrors=True,
+                                        Converter={StaticResource EmailConverter},
+                                        UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource PrimaryTextBox}"></TextBox>
 
                 <!--Phone Input-->
                 <Label Content="Phone" Style="{StaticResource PrimaryLabel}"></Label>
-                <TextBox Text="{Binding Phone,UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Phone,
+                                        ValidatesOnDataErrors=True,
+                                        UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource PrimaryTextBox}"></TextBox>
                 
                 <!--Add Button-->
@@ -78,7 +89,7 @@
                 <ListView ItemsSource="{Binding PersonsToList}" Height="600">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <DockPanel Width="500" Margin="5">
+                            <DockPanel Width="600" Margin="30,10">
                                 
                                 <!--Name and Email-->
                                 <StackPanel DockPanel.Dock="Left" Width="300">

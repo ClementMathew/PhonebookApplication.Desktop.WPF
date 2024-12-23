@@ -12,6 +12,16 @@
         <Setter Property="FontSize" Value="{StaticResource FontSmall}"/>
         <Setter Property="BorderBrush" Value="{StaticResource SecondaryBrush}"/>
         <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder></AdornedElementPlaceholder>
+                        <TextBlock Text="{Binding Path=[0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Resources>
             <Style TargetType="Border">
                 <Setter Property="CornerRadius" Value="3"/>

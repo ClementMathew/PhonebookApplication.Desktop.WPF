@@ -52,7 +52,7 @@
         <Style.Setters>
             <Setter Property="FontSize" Value="{StaticResource FontNormal}"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Padding" Value="0,15,0,10"/>
+            <Setter Property="Padding" Value="0,25,0,10"/>
             <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
         </Style.Setters>
     </Style>
