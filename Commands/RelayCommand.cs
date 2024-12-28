@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Phonebook_Application.Commands
@@ -21,7 +17,7 @@ namespace Phonebook_Application.Commands
         /// </summary>
         /// <param name="execute"></param>
         /// <param name="canExecute"></param>
-        public RelayCommand(Action<object> execute,Func<object,bool> canExecute = null)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;

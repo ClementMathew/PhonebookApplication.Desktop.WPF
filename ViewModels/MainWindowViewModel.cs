@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using Phonebook_Application.Commands;
 using Phonebook_Application.Models;
 using Phonebook_Application.Repositories;
 
 namespace Phonebook_Application.ViewModels
 {
-    internal class MainWindowViewModel : VIewModelBase, IDataErrorInfo
+    internal class MainWindowViewModel : ViewModelBase, IDataErrorInfo
     {
         private IRepository<Person> _repository;
         private List<Person> _persons;
@@ -131,12 +127,12 @@ namespace Phonebook_Application.ViewModels
         {
             get
             {
-                var context = new ValidationContext(this) { MemberName = columnName };
+                ValidationContext context = new ValidationContext(this) { MemberName = columnName };
                 results = new List<ValidationResult>();
 
-                var value = GetType().GetProperty(columnName).GetValue(this);
+                object value = GetType().GetProperty(columnName).GetValue(this);
 
-                var isValid = Validator.TryValidateProperty(value, context, results);
+                bool isValid = Validator.TryValidateProperty(value, context, results);
                 return isValid ? null : results.First().ErrorMessage;
             }
         }
@@ -164,7 +160,7 @@ namespace Phonebook_Application.ViewModels
             {
                 PersonsToList.Clear();
 
-                foreach (var item in _persons)
+                foreach (Person item in _persons)
                 {
                     if (item.Name.Contains(Search) || item.Email.Contains(Search))
                     {
@@ -175,7 +171,7 @@ namespace Phonebook_Application.ViewModels
             else
             {
                 PersonsToList.Clear();
-                foreach (var item in _persons)
+                foreach (Person item in _persons)
                 {
                     PersonsToList.Add(item);
                 }
@@ -204,7 +200,7 @@ namespace Phonebook_Application.ViewModels
         {
             if (!(string.IsNullOrEmpty(Name) && (string.IsNullOrEmpty(Email)) && (string.IsNullOrEmpty(Phone))))
             {
-                var newPerson = new Person(Name, Phone, Email);
+                Person newPerson = new Person(Name, Phone, Email);
 
                 _persons.Add(newPerson);
                 PersonsToList.Add(newPerson);
