@@ -7,8 +7,9 @@
         xmlns:vm="clr-namespace:Phonebook_Application.ViewModels"
         xmlns:ec="clr-namespace:Phonebook_Application.Converters"   
         mc:Ignorable="d" Icon="Assets/logo.ico"
-        WindowStartupLocation="CenterScreen"
-        Title="Phone Book" Height="900" Width="1600">
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        ResizeMode="NoResize"
+        Title="Phone Book" d:Height="900" d:Width="1600">
 
     <!--Main Window Data Context-->
     <Window.DataContext>
