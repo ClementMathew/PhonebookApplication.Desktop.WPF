@@ -64,7 +64,7 @@ namespace Phonebook_Application.Repositories
         /// <summary>
         /// AddItem Function
         /// ----------------
-        /// 1. Creates person object and adds to _persons list.
+        /// 1. Recieving person object and adds to _persons list.
         /// 2. Write _persons to data.json by JsonWrite Function.
         /// </summary>
         /// <param name="name"></param>
