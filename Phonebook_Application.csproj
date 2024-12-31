@@ -65,7 +65,7 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\JsonRepository.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\VIewModelBase.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Phonebook_Application.ViewModels
 {
-    internal abstract class VIewModelBase : INotifyPropertyChanged
+    internal abstract class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -18,7 +13,7 @@ namespace Phonebook_Application.ViewModels
         /// 1. Invokes PropertyChanged by propertyName from CallerMemberName.
         /// </summary>
         /// <param name="propertyName"></param>
-        public void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

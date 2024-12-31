@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using Newtonsoft.Json;
 using Phonebook_Application.Models;
 
@@ -68,7 +64,7 @@ namespace Phonebook_Application.Repositories
         /// <summary>
         /// AddItem Function
         /// ----------------
-        /// 1. Creates person object and adds to _persons list.
+        /// 1. Recieving person object and adds to _persons list.
         /// 2. Write _persons to data.json by JsonWrite Function.
         /// </summary>
         /// <param name="name"></param>
