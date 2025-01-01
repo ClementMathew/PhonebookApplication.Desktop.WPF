@@ -60,6 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\DimensionConverter.cs" />
     <Compile Include="Converters\EmailConverter.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Repositories\IRepository.cs" />

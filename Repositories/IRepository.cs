@@ -16,6 +16,14 @@ namespace Phonebook_Application.Repositories
         void AddItem(Person person);
 
         /// <summary>
+        /// RemoveItem Method
+        /// -----------------
+        /// 1. Remove single item from the repository.
+        /// </summary>
+        /// <param name="person"></param>
+        void RemoveItem(Person person);
+
+        /// <summary>
         /// GetAll Method
         /// -------------
         /// 1. returns all items from repository as IEnumerable.

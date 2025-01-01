@@ -11,6 +11,11 @@ namespace Phonebook_Application.Repositories
         private List<Person> _persons;
         private string _filePath;
 
+        /// <summary>
+        /// JsonRepository Constructor
+        /// --------------------------
+        /// 1. Initialize _persons list if application installed fresh. 
+        /// </summary>
         public JsonRepository()
         {
             IntializeJsonRepository();
@@ -64,16 +69,26 @@ namespace Phonebook_Application.Repositories
         /// <summary>
         /// AddItem Function
         /// ----------------
-        /// 1. Recieving person object and adds to _persons list.
+        /// 1. Receiving person object and adds to _persons list.
         /// 2. Write _persons to data.json by JsonWrite Function.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="phone"></param>
-        /// <param name="email"></param>
+        /// <param name="person"></param>
         public void AddItem(Person person)
         {
             _persons.Add(person);
+            JsonWrite();
+        }
 
+        /// <summary>
+        /// RemoveItem Function
+        /// -------------------
+        /// 1. Receiving person object and removes from _persons list.
+        /// 2. Write _persons to data.json by JsonWrite Function.
+        /// </summary>
+        /// <param name="person"></param>
+        public void RemoveItem(Person person)
+        {
+            _persons.Remove(person);
             JsonWrite();
         }
 

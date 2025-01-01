@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Phonebook_Application"
         xmlns:vm="clr-namespace:Phonebook_Application.ViewModels"
-        xmlns:ec="clr-namespace:Phonebook_Application.Converters"   
+        xmlns:vc="clr-namespace:Phonebook_Application.Converters"   
         mc:Ignorable="d" Icon="Assets/logo.ico"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         ResizeMode="NoResize"
@@ -18,7 +18,8 @@
 
     <!--Converter Resources-->
     <Window.Resources>
-        <ec:EmailConverter x:Key="EmailConverter"/>
+        <vc:EmailConverter x:Key="EmailConverter"/>
+        <vc:DimensionConverter x:Key="DimensionConverter"/>
     </Window.Resources>
 
     <!--Outer Main Row Grid-->
@@ -27,7 +28,7 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="6*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <!--Application Main Header-->
         <StackPanel Grid.Row="0">
             <StackPanel Orientation="Horizontal">
@@ -68,12 +69,12 @@
                                         ValidatesOnDataErrors=True,
                                         UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource PrimaryTextBox}"></TextBox>
-                
+
                 <!--Add Button-->
                 <Button Command="{Binding AddCommand}" Content="Add Details" Style="{StaticResource PrimaryButton}"/>
 
                 <Separator/>
-                
+
                 <!--Search Input-->
                 <Label Content="Search" Style="{StaticResource PrimaryLabel}"></Label>
                 <TextBox Text="{Binding Search ,UpdateSourceTrigger=PropertyChanged}"
@@ -85,19 +86,26 @@
 
             <!--Bottom RightSide-->
             <StackPanel Margin="30" Grid.Column="1">
-                
+
                 <!--Phone List View With Template-->
-                <ListView ItemsSource="{Binding PersonsToList}" Height="600">
+                <ListView ItemsSource="{Binding PersonsToList}" Height="{Binding RelativeSource={RelativeSource AncestorType=Window},
+                                                Path=ActualHeight,Converter={StaticResource DimensionConverter}}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <DockPanel Width="600" Margin="30,10">
-                                
+                            <DockPanel Width="800" Margin="30,10">
+
                                 <!--Name and Email-->
                                 <StackPanel DockPanel.Dock="Left" Width="300">
                                     <TextBlock Text="{Binding Name}" Style="{StaticResource ListHeader}"/>
                                     <TextBlock Text="{Binding Email}" Style="{StaticResource ListSubHeader}"/>
                                 </StackPanel>
-                                
+
+                                <!--Delete Button-->
+                                <Button DockPanel.Dock="Right" Style="{StaticResource DeleteButton}"
+                                        CommandParameter="{Binding Name}"
+                                        Command="{Binding DataContext.DeleteCommand,
+                                                          RelativeSource={RelativeSource AncestorType=ListView}}">Delete</Button>
+
                                 <!--Phone Number-->
                                 <Border Background="{StaticResource SecondaryBrush}" CornerRadius="10" 
                                         Padding="15,8"

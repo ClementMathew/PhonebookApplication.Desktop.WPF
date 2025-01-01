@@ -19,4 +19,22 @@
             <Setter Property="FontSize" Value="{StaticResource FontNormal}"/>
         </Style.Setters>
     </Style>
+
+    <!--Delete Button-->
+    <Style x:Key="DeleteButton" TargetType="Button" BasedOn="{StaticResource ButtonBase}">
+        <Style.Setters>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="{StaticResource FontNormal}"/>
+        </Style.Setters>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

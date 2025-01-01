@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Windows;
 using Phonebook_Application.Commands;
 using Phonebook_Application.Models;
 using Phonebook_Application.Repositories;
@@ -23,8 +24,10 @@ namespace Phonebook_Application.ViewModels
         /// Observable Collection to list elements in list view.
         /// </summary>
         public ObservableCollection<Person> PersonsToList { get; set; }
+
         public RelayCommand AddCommand { get; set; }
         public RelayCommand ClearCommand { get; set; }
+        public RelayCommand DeleteCommand { get; set; }
 
         #region Properties
 
@@ -76,6 +79,7 @@ namespace Phonebook_Application.ViewModels
                 AddCommand?.OnCanExecuteChanged();
             }
         }
+
         private string _search;
 
         public string Search
@@ -89,14 +93,26 @@ namespace Phonebook_Application.ViewModels
             }
         }
 
+        private Person _selectedPerson;
+
+        public Person SelectedPerson
+        {
+            get { return _selectedPerson; }
+            set
+            {
+                _selectedPerson = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         /// <summary>
         /// MainWindowViewModel Constructor
         /// -------------------------------
         /// 1. Creates JsonRepository object.
-        /// 2. Intializes _persons and PersonsToList from JsonRepository.
-        /// 3. Intializes relay commands add and clear.
+        /// 2. Initializes _persons and PersonsToList from JsonRepository.
+        /// 3. Initializes relay commands add, clear and delete.
         /// </summary>
         public MainWindowViewModel()
         {
@@ -107,8 +123,12 @@ namespace Phonebook_Application.ViewModels
 
             AddCommand = new RelayCommand(HandleAddCommand, CanHandleAddCommand);
             ClearCommand = new RelayCommand(HandleClearCommand);
+            DeleteCommand = new RelayCommand(HandleDeleteCommand);
         }
 
+        /// <summary>
+        /// Property where we get errors.
+        /// </summary>
         public string Error { get; }
 
         /// <summary>
@@ -134,6 +154,33 @@ namespace Phonebook_Application.ViewModels
 
                 bool isValid = Validator.TryValidateProperty(value, context, results);
                 return isValid ? null : results.First().ErrorMessage;
+            }
+        }
+
+        /// <summary>
+        /// HandleDeleteCommand Function
+        /// ----------------------------
+        /// 1. Search for the person in the PersonsToList by command parameter 'obj' and sets SelectedPerson by person object.
+        /// 2. Asking confirmation to delete the SelectedPerson.
+        /// 3. Removes SelectedPerson from Json Repository, _persons and PersonsToList.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void HandleDeleteCommand(object obj)
+        {
+            foreach (Person person in PersonsToList)
+            {
+                if (person.Name == (string)obj)
+                {
+                    SelectedPerson = person;
+                }
+            }
+            MessageBoxResult result = MessageBox.Show("Delete Person", "Delete Person", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _repository.RemoveItem(SelectedPerson);
+                _persons.Remove(SelectedPerson);
+                PersonsToList.Remove(SelectedPerson);
             }
         }
 
